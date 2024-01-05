@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-top: 3px solid #fff;
+}
+
+.footer-column {
+    flex: 1;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+footer p {
+    margin: 0;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+footer h3 {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+footer nav ul a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+footer img.logo {
+    max-width: 150px;
+}
+
+.social-icons img {
+    max-width: 30px;
+    margin: 0 10px 0 0;
+}
+
+.contact-info {
+    text-align: left;
+}
+
+.newsletter-form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 10px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.newsletter-form button {
+    padding: 10px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.newsletter-form button:hover {
+    background-color: #444;
+}
+
+.services {
+    text-align: left;
+}
+
+.services ul {
+    list-style: none;
+    padding: 0;
+}
+
+.services ul li {
+    margin-bottom: 5px;
+}
