@@ -1,40 +1,10 @@
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-body-tertiary text-muted">
     <!-- Section: Social media -->
-    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-        <!-- Left -->
-        <div class="me-5 d-none d-lg-block">
-            <span>Get connected with us on social networks:</span>
-        </div>
-        <!-- Left -->
-
-        <!-- Right -->
-        <div>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-google"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-github"></i>
-            </a>
-        </div>
-        <!-- Right -->
-    </section>
     <!-- Section: Social media -->
 
     <!-- Section: Links  -->
-    <section class="">
+    <section class="border-top">
         <div class="container text-center text-md-start mt-5">
             <!-- Grid row -->
             <div class="row mt-3">
@@ -103,7 +73,16 @@
                         info@example.com
                     </p>
                     <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                    <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                    <div>
+                        <!-- Facebook -->
+                        <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
+                        <!-- Twitter -->
+                        <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+                        <!-- Instagram -->
+                        <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
                 <!-- Grid column -->
             </div>
