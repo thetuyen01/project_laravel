@@ -33,7 +33,7 @@
 
                 <div class="col">
                     <!-- Simple link -->
-                    <a href="#!">Forgot password?</a>
+                    <a href="{{ route('formForget') }}">Forgot password?</a>
                 </div>
             </div>
 

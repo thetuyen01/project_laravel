@@ -12,9 +12,20 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
+<style>
+    #imageListContainer img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        /* Đảm bảo ảnh không bị méo hoặc căng */
+        margin-right: 5px;
+        /* Khoảng cách giữa các ảnh */
+    }
+</style>
+
 
 <body>
     {{-- header --}}

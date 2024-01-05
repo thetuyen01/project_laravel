@@ -19,6 +19,13 @@ return new class extends Migration
             $table->decimal('price', 10, 3);
             $table->decimal('discount', 10, 3);
             $table->text('description');
+            $table-> bigInteger('category_id')->unsigned();
+            $table->foreign('category_id')
+            ->references('id')
+            ->on('categories')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->timestamp('delete_at')->nullable();
             $table->timestamps();
         });
     }

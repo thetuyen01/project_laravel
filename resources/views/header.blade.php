@@ -40,10 +40,10 @@
             @if (!Auth::check())
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fs-5 fw-bold a1" href="#">Login</a>
+                        <a class="nav-link fs-5 fw-bold a1" href="{{ route('formlogin') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5  fw-bold a1" href="#">Sign up</a>
+                        <a class="nav-link fs-5  fw-bold a1" href="{{ route('formsignup') }}">Sign up</a>
                     </li>
                 </ul>
             @endif
