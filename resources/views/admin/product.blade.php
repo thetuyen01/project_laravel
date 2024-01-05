@@ -12,6 +12,12 @@
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
             </select>
+            <label class="form-label" for="form5Example1">Chọn nhà sản xuất</label>
+            <select class="form-select mb-4" name="brand_id" aria-label="Default select example">
+                @foreach ($brands as $item)
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                @endforeach
+            </select>
             <!-- category name input -->
             <div data-mdb-input-init class="form-outline mb-4">
                 <input type="text" name="name" id="form5Example1" class="form-control" />

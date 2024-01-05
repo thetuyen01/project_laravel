@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brands;
 use App\Models\Category;
 use App\Models\Product_Image;
 use App\Models\Products;
@@ -12,17 +13,20 @@ class ProductController extends Controller
 {
     public function showFormProduct(){
         $categorys = Category::all();
-        return view('admin.product', ['categorys'=>$categorys]);
+        $brands = Brands::all();
+        return view('admin.product', ['categorys'=>$categorys, 'brands' => $brands]);
     }
 
     public function addProduct(Request $request){
         if ($request->filled('name') && $request->filled('category_id') && $request->filled('price')
-            && $request->filled('discount') && $request->filled('description') && $request->file('images')
+            && $request->filled('discount') && $request->filled('description') && $request->file('images') && 
+            $request->file('brand_id')
         )
         {
             $product = Products::create([
                 'name' => $request->name,
                 'category_id' => $request->category_id,
+                'brand_id' => $request->brand_id,
                 'price' => $request->price,
                 'discount' => $request->discount,
                 'description' => $request->description,

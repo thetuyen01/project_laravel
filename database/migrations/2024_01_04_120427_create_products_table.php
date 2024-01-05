@@ -25,6 +25,12 @@ return new class extends Migration
             ->on('categories')
             ->onDelete('cascade')
             ->onUpdate('cascade');
+            $table-> bigInteger('brand_id')->unsigned();
+            $table->foreign('brand_id')
+            ->references('id')
+            ->on('brands')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             $table->timestamp('delete_at')->nullable();
             $table->timestamps();
         });

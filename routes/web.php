@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Auth\ChangePasswordController;
@@ -73,6 +74,9 @@ Route::prefix('admin')->group(function(){
     // Route Product get 
     Route::get('/product', [AdminProductController::class, 'showFormProduct'])->name('showFormProduct');
     Route::post('/product', [AdminProductController::class, 'addProduct'])->name('admin.addProduct');
+    // Route Brand
+    Route::get('/brand', [BrandController::class, 'showFormBrand'])->name('formBrand');
+    Route::post('/brand', [BrandController::class, 'addBrand'])->name('admin.addBrand');
 });
 Route::get('/admin/home', function () {
     return view('admin.home');
