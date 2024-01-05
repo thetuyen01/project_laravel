@@ -6,53 +6,33 @@
                 Vui lòng kiểm tra dử liệu !!!
             </div>
         @endif
-        <form method="POST" action="{{ route('auth.signup') }}">
-            @csrf
-            <h1>Signup</h1>
-            <!-- Email input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-                <input type="email" name="email" class="form-control" />
-                <label class="form-label" for="form1Example1">Email address</label>
-                @error('email')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </div>
-            <!-- Username input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" name="name" id="form1Example12" class="form-control" />
-                <label class="form-label" for="form1Example12">Username</label>
-                @error('name')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </div>
+        <h1 class="text-center mb-4 text-danger" style="margin-top:70px ">Signup</h1>
+        <div class="container d-flex justify-content-center align-items-center pb-5" >
+            <form method="POST" action="{{ route('auth.signup') }}" class="shadow-5-strong p-5 border border-0 rounded-5">
+                @csrf
 
-            <!-- Password input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-                <input type="password" name="password" id="form1Example2" class="form-control" />
-                <label class="form-label" for="form1Example2">Password</label>
-                @error('password')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
-            </div>
+                <!-- Email input -->
+                    <input type="email" name="email" class="form-control rounded-pill mb-4" placeholder="Email address" />
+                    @error('email')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                <!-- Username input -->
+                    <input type="text" name="name" id="form1Example12" class="form-control rounded-pill mb-4" placeholder="Username" />
+                    @error('name')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
 
-            <!-- 2 column grid layout for inline styling -->
-            <div class="row mb-4">
-                <div class="col d-flex justify-content-center">
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-                        <label class="form-check-label" for="form1Example3"> Remember me </label>
-                    </div>
-                </div>
+                <!-- Password input -->
+                    <input type="password" name="password" id="form1Example2" class="form-control rounded-pill mb-4" placeholder="Password"  />
+                    @error('password')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
 
-                <div class="col">
-                    <!-- Simple link -->
-                    <a href="#!">Forgot password?</a>
-                </div>
-            </div>
+                <!-- 2 column grid layout for inline styling -->
 
-            <!-- Submit button -->
-            <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block">Sign in</button>
-        </form>
+                <!-- Submit button -->
+                <button data-mdb-ripple-init type="submit" class="btn btn-warning btn-block rounded-pill">Sign in</button>
+            </form>
+        </div>
     </div>
 @endsection
