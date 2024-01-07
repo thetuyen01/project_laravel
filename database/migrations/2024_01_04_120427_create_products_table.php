@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price', 10, 3);
             $table->decimal('discount', 10, 3);
             $table->text('description');
+            $table->string('slug');
             $table-> bigInteger('category_id')->unsigned();
             $table->foreign('category_id')
             ->references('id')

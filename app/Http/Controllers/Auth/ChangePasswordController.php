@@ -17,8 +17,7 @@ class ChangePasswordController extends Controller
             return redirect()->route('formlogin');
         }else{
             return redirect()->back()->with('message','password mismatch');
-        }
-        
+        }  
     }
 
     public function showFormChangePW(){

@@ -26,11 +26,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/{slug}', [ProductController::class, 'showAllProductsInCategory'])->name('showAllProductsInCategory');
-
-
-
 
 Route::prefix('auth')->group(function(){
     // Route show form đăng nhập
@@ -81,3 +76,8 @@ Route::prefix('admin')->group(function(){
 Route::get('/admin/home', function () {
     return view('admin.home');
 })->name('admin.home');
+
+
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/{slug}', [ProductController::class, 'showAllProductsInCategory'])->name('showAllProductsInCategory');
+Route::get('/{slug_category}/{slug_product}', [ProductController::class, 'detailProducts'])->name('detailProduct');

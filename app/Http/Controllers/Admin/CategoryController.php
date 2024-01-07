@@ -17,11 +17,12 @@ class CategoryController extends Controller
         if ($request->hasFile('path') && $request->filled('name')){
             $fileName = pathinfo($request->file('path')->getClientOriginalName(), PATHINFO_FILENAME);
             $name = $request->name;
-            $path = $request->file('path')->storeAs('public/images', $fileName.date('YmdHis').'.jpg');
+            $path = $fileName.date('YmdHis').'.jpg';
+            $request->file('path')->storeAs('public/images', $path);
             $slug = Str::slug($name);
             Category::create([
                 'name'=>$name,
-                'path'=>$fileName.date('YmdHis').'.jpg',
+                'path'=>$path,
                 'slug'=>$slug
             ]);
             return redirect()->route('formCategory');
