@@ -11,7 +11,7 @@
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Navbar brand -->
-            <a class="navbar-brand mt-2 mt-lg-0" href="#">
+            <a class="navbar-brand mt-2 mt-lg-0" href="/">
                 <img src="{{ asset('images/logo.jpg') }}" height="30" alt="MDB Logo" loading="lazy" />
             </a>
             <!-- form -->
@@ -23,7 +23,7 @@
             <!-- Left links -->
             <ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
                 <li class="nav-item">
-                    <a class="nav-link  fs-5 fw-bold active" href="#">Home</a>
+                    <a class="nav-link  fs-5 fw-bold active" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fs-5 fw-bold a1" href="#">Shop</a>

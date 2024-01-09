@@ -1,0 +1,68 @@
+@if ($index == 0)
+                        <div class="carousel-item blog active">
+                            <div class="row d-flex justify-content-center">
+                                @foreach ($product as $item)
+                                    <div class="col-lg-3 col-md-2 col-sm-3">
+                                        <div class="card">
+                                            <div class="bg-image hover-overlay" data-mdb-ripple-init
+                                                data-mdb-ripple-color="light">
+                                                <img src="{{ asset('storage/images/' . $item->images[0]->path) }}"
+                                                    class="img-fluid" />
+                                                <a href="#!">
+                                                    <div class="mask"
+                                                        style="background-color: rgba(251, 251, 251, 0.15);">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <a href="{{ url($item->category->slug . '/' . $item->slug) }}"
+                                                    class="" data-mdb-ripple-init>
+                                                    <h5 class="card-title ">{{ $item->name }}</h5>
+                                                    <h6 class="text-decoration-line-through text-danger">
+                                                        {{ $item->price }}<span class="text-decoration-underline">đ</span>
+                                                    </h6>
+                                                    <h5 class="card-title">{{ $item->discount }}<span
+                                                            class="text-decoration-underline">đ</span></h5>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{ $item->name }}
+                                @endforeach
+                            </div>
+                        </div>
+                    @else
+                        <div class="carousel-item blog ">
+                            <div class="row d-flex justify-content-center">
+                                @foreach ($product as $item)
+                                    <div class="col-lg-3 col-md-2 col-sm-3">
+                                        <div class="card">
+                                            <div class="bg-image hover-overlay" data-mdb-ripple-init
+                                                data-mdb-ripple-color="light">
+                                                <img src="{{ asset('storage/images/' . $item->images[0]->path) }}"
+                                                    class="img-fluid" />
+                                                <a href="#!">
+                                                    <div class="mask"
+                                                        style="background-color: rgba(251, 251, 251, 0.15);">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <a href="{{ url($item->category->slug . '/' . $item->slug) }}"
+                                                    class="" data-mdb-ripple-init>
+                                                    <h5 class="card-title ">{{ $item->name }}</h5>
+                                                    <h6 class="text-decoration-line-through text-danger">
+                                                        {{ $item->price }}<span class="text-decoration-underline">đ</span>
+                                                    </h6>
+                                                    <h5 class="card-title">{{ $item->discount }}<span
+                                                            class="text-decoration-underline">đ</span></h5>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif

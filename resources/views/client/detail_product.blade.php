@@ -5,7 +5,7 @@
         <div class="row">
             @if ($product)
                 <div class="col-md-7">
-                    <div class="container mt-5">
+                    <div class="container">
                         <div class="tab-content" id="pills-tabContent2">
                             @foreach ($product->images as $index => $item)
                                 @if ($index == 0)
@@ -31,8 +31,8 @@
                                             data-mdb-target="#pills-home2" type="button" role="tab"
                                             aria-controls="pills-home" aria-selected="true">
                                             <img height="100px" width="100px"
-                                                src="{{ asset('storage/images/' . $item->path) }}" class="card-img-top w-50"
-                                                alt="Fissure in Sandstone" />
+                                                src="{{ asset('storage/images/' . $item->path) }}"
+                                                class="card-img-top w-100" alt="Fissure in Sandstone" />
                                         </button>
                                     </li>
                                 @else
@@ -41,8 +41,8 @@
                                             data-mdb-target="#pills-{{ $item->id }}2" type="button" role="tab"
                                             aria-controls="pills-{{ $item->id }}" aria-selected="false">
                                             <img height="100px" width="100px"
-                                                src="{{ asset('storage/images/' . $item->path) }}" class="card-img-top w-50"
-                                                alt="Fissure in Sandstone" />
+                                                src="{{ asset('storage/images/' . $item->path) }}"
+                                                class="card-img-top w-100" alt="Fissure in Sandstone" />
                                         </button>
                                     </li>
                                 @endif

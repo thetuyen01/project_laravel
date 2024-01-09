@@ -42,8 +42,9 @@
     @include('footer')
     {{-- endfoter --}}
     <!-- MDB -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
-
 </body>
 
 </html>
