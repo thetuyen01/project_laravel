@@ -14,6 +14,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {{-- jqry --}}
+
 </head>
 <style>
     #imageListContainer img {
@@ -23,6 +25,22 @@
         /* Đảm bảo ảnh không bị méo hoặc căng */
         margin-right: 5px;
         /* Khoảng cách giữa các ảnh */
+    }
+
+    .form-serch .abc {
+        width: 250px;
+        position: relative;
+    }
+
+    .form-serch .search-ajax-result {
+        position: absolute;
+        background-color: aliceblue;
+        padding: 10px;
+        width: 250px;
+    }
+
+    .form-serch .media {
+        display: flex;
     }
 </style>
 
@@ -45,6 +63,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
 </body>
 
 </html>

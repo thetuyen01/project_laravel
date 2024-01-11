@@ -246,4 +246,37 @@
         </div>
     </div>
     <!-- menu2 end -->
+
+    {{-- danh mục menu và products --}}
+    @foreach ($categoryDM as $index => $category)
+        <div class="container mb-5">
+            <h3 class="btn btn-warning rounded-pill fs-4 text-center mb-5">{{ $category->name }}</h3>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                @foreach ($category->products as $item)
+                    <div class="col">
+                        <div class="card">
+                            <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
+                                <img src="{{ asset('storage/images/' . $item->images[0]->path) }}" class="img-fluid" />
+                                <a href="{{ url($item->category->slug . '/' . $item->slug) }}">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <a href="{{ url($item->category->slug . '/' . $item->slug) }}" class=""
+                                    data-mdb-ripple-init>
+                                    <h5 class="card-title ">{{ $item->name }}</h5>
+                                    <h6 class="text-decoration-line-through text-danger">{{ $item->price }}<span
+                                            class="text-decoration-underline">đ</span></h6>
+                                    <h5 class="card-title">{{ $item->discount }}<span
+                                            class="text-decoration-underline">đ</span></h5>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endforeach
 @endsection

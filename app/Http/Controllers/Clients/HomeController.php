@@ -10,10 +10,14 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function home(){
-        $categorys = Category::all();
+        $category_menu = Category::all();
+        $categories = Category::with(['products' => function ($query) {
+            $query->take(8)->with('images');
+        }])->get();
         $products = Products::with('images', 'brand', 'category')->take(8)->get()->toArray();
         $productsChunks = array_chunk($products, 2);
-        // dd($productsChunks);
-        return view('client.home', ['categorys'=>$categorys, 'products'=>$productsChunks]);
+        // dd($categories);
+        // // dd($productsChunks);
+        return view('client.home', ['categorys'=>$category_menu, 'products'=>$productsChunks, 'categoryDM'=>$categories]);
     }
 }

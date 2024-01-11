@@ -15,9 +15,16 @@
                 <img src="{{ asset('images/logo.jpg') }}" height="30" alt="MDB Logo" loading="lazy" />
             </a>
             <!-- form -->
-            <form class="d-flex input-group w-25">
-                <input type="search" class="form-control rounded-pill" placeholder="Search ...." aria-label="Search"
-                    aria-describedby="search-addon" />
+            <form class="d-flex input-group w-25 form-serch">
+                <div class="abc">
+                    <input type="search" id="search" name="search "
+                        class="form-control rounded-pill input-search-ajax" placeholder="Search ...."
+                        aria-label="Search" aria-describedby="search-addon" />
+
+                    <div class="search-ajax-result">
+
+                    </div>
+                </div>
             </form>
             <!-- endform -->
             <!-- Left links -->
@@ -59,3 +66,35 @@
     <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+<script>
+    $('.search-ajax-result').hide();
+    $('.input-search-ajax').keyup(function() {
+        var _text = $(this).val();
+
+        $.ajax({
+            url: '{{ route('search_product') }}?key=' + _text,
+            type: "GET",
+            success(res) {
+                console.log(res)
+                var html = '';
+                if (_text.length > 0) {
+                    for (var pro of res.data) {
+                        html += '<div class="media">'
+                        html += '<a href="">' + pro.name + '</a>'
+                        html += '<div class="media-body">' + pro.price + '</div>'
+                        html += '</div>';
+                        html += '<hr>'
+                    }
+                    $('.search-ajax-result').show();
+                    $('.search-ajax-result').html(html)
+                } else {
+                    var html = '';
+                    $('.search-ajax-result').html(html)
+                    $('.search-ajax-result').hide();
+                }
+
+            }
+        })
+
+    })
+</script>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogImageController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -72,6 +73,9 @@ Route::prefix('admin')->group(function(){
     // Route Brand
     Route::get('/brand', [BrandController::class, 'showFormBrand'])->name('formBrand');
     Route::post('/brand', [BrandController::class, 'addBrand'])->name('admin.addBrand');
+    // blog Image addblogImage
+    Route::get('/image', [BlogImageController::class], 'ShowFormBlogImage')->name('showformbogimage');
+    Route::post('/image', [BlogImageController::class], 'addImageBlog')->name('addblogImage');
 });
 Route::get('/admin/home', function () {
     return view('admin.home');

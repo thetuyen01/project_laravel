@@ -32,7 +32,7 @@ class LoginController extends Controller
                 return redirect()->route('home')->with('message', 'Login user success');
             }
         }else{
-            return redirect()->route('formlogin')
+            return redirect()->back()
                 ->with('message','Email-Address And Password Are Wrong.');
         }   
     }

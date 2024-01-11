@@ -19,6 +19,9 @@ class RegisterController extends Controller
 
     public function signup(Request $request)
     {
+        if (trim($request->password) != trim($request->cfpassword)){
+            return redirect()->back()->with('cfpassword', 'The ConFirmPassword is not correct');
+        }
         // validate
         $rules = [
             'email' => 'required|email|unique:users,email',
