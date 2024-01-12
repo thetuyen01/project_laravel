@@ -27,7 +27,7 @@ class ResetPasswordController extends Controller
             }else{
                 return redirect()->back()->with('message','password now mismatch');
             }
-            return redirect()->route('formlogin');
+            return redirect()->route('formlogin')->with('success', 'Rest password success');
         }else{
             return redirect()->back()->with('message','password mismatch');
         }  

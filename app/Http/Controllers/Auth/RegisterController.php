@@ -54,6 +54,6 @@ class RegisterController extends Controller
             'is_admin'=> 0
         ]);
         
-        return redirect()->route('formlogin'); // Redirect after successful signup
+        return redirect()->route('formlogin')->with('success', 'register success'); // Redirect after successful signup
     }
 }

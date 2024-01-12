@@ -15,8 +15,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    {{-- jqry --}}
-
+    {{-- toast --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <style>
     #imageListContainer img {
@@ -51,6 +53,10 @@
     .form-serch .media {
         display: flex;
     }
+
+    .custom-toast {
+        margin-top: 5rem;
+    }
 </style>
 
 
@@ -73,8 +79,39 @@
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    {{-- toast --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
+    @if (Session::has('success'))
+        <script>
+            toastr.options = {
+                "progressBar": true,
+                "closeButton": true,
+                "positionClass": "toast-top-right custom-toast",
+            }
+            toastr.success("{{ session('success') }}", {
+                timeOut: 120000
+            })
+        </script>
+    @endif
+
+    @if (Session::has('message'))
+        <script>
+            toastr.options = {
+                "progressBar": true,
+                "closeButton": true,
+                "positionClass": "toast-top-right custom-toast",
+            }
+            toastr.danger("{{ session('message') }}", {
+                timeOut: 120000
+            })
+        </script>
+    @endif
 </body>
 
 </html>
