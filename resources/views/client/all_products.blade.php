@@ -10,10 +10,9 @@
                 </div>
             </div>
         </div>
-
         <!--linkend -->
         <div class="container row m-auto" style="margin-top: 300px;">
-            <div class="col-2 mt-5">
+            <div class="col-12 col-md-2 col-sm-2 mt-5">
                 <form action="#" method="GET">
                     <h5 class="fs-5 fw-bold">BỘ LỘC SẢN PHẨM</h5>
                     <!-- locgia -->
@@ -52,12 +51,6 @@
                             <span class="form-label">{{ $item->name }}</span><br>
                         @endforeach
 
-                        {{-- <input type="checkbox" class="" name="brand" value="b" id=""
-                            aria-describedby="helpId" placeholder="" />
-                        <span class="form-label">durex</span><br>
-                        <input type="checkbox" class="" name="brand" value="c" id=""
-                            aria-describedby="helpId" placeholder="" />
-                        <span class="form-label">phithuongg</span><br> --}}
                     </div>
                     <!-- lochangend -->
                     <div class="d-flex justify-content-center">
@@ -66,22 +59,7 @@
 
                 </form>
             </div>
-            <div class="col-10 mt-5">
-                {{-- <div class=" d-flex justify-content-center">
-                    <span class="pe-2">Xếp theo:</span>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="" id="" />
-                        <label class="form-check-label" for=""> Hàng mới </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="" id="" />
-                        <label class="form-check-label" for=""> Gía thấp đến cao </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="" id="" />
-                        <label class="form-check-label" for=""> Gía cao đến thấp </label>
-                    </div>
-                </div> --}}
+            <div class="col-12 col-md-10 col-sm-10 mt-5">
                 <div class="mb-5">
                     <div class="row d-flex justify-content-center grid gap-1">
                         @foreach ($products as $item)

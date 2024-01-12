@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success mt-5">
+            {{ session('success') }}
+        </div>
+    @endif
     <!-- slide -->
     <div class="container mb-5 " style="margin-top: 66.5px;">
         <div id="carousel" class="carousel slide" data-mdb-ride="carousel" data-mdb-carousel-init>

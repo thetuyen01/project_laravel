@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\Clients\SearchProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+//serch
 Route::get('/serch-product', [SearchProductController::class, 'ajaxSearch'])->name('search_product');

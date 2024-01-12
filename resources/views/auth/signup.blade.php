@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-5 h-75">
         @if ($errors->any())
             <div class="alert alert-danger">
                 Vui lòng kiểm tra dử liệu !!!

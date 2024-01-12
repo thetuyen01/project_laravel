@@ -10,7 +10,7 @@ class SearchProductController extends Controller
 {
     public function ajaxSearch(Request $request){
         $key = $request->key;
-        $data = Products::where('name', 'like', '%' . trim($key) . '%')
+        $data = Products::with('category','images')->where('name', 'like', '%' . trim($key) . '%')
         ->orWhere('price', 'like', '%' . trim($key) . '%')
         ->get();;
         $data = [

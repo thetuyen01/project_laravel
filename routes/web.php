@@ -10,8 +10,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Clients\CartDetailController;
 use App\Http\Controllers\Clients\HomeController;
 use App\Http\Controllers\Clients\ProductController;
+use App\Http\Controllers\Clients\ProfileUserController;
+use App\Http\Controllers\Clients\CartController;
 use App\Mail\ForGetPassword;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -83,5 +86,16 @@ Route::get('/admin/home', function () {
 
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
+// profile
+Route::get('/profile', [ProfileUserController::class, 'ShowProfile'])->name('profile');
+Route::put('/profile', [ProfileUserController::class, 'UpdateProfileUser'])->name('updateProdile');
+
+//cart
+Route::get('/cart', [CartController::class, 'getCart'])->name('getCart')->middleware('auth');
+Route::post('/updatequantity', [CartDetailController::class, 'updateQuantity'])->name('updateQuantity')->middleware('auth');
+Route::post('/deletecartdetai', [CartDetailController::class, 'deleteProdcutCart'])->name('deleteProdcutCart')->middleware('auth');
+
+
+Route::post('/addCartDetail', [CartDetailController::class, 'addCartDetail'])->name('addCartDetail');
 Route::get('/{slug}', [ProductController::class, 'showAllProductsInCategory'])->name('showAllProductsInCategory');
 Route::get('/{slug_category}/{slug_product}', [ProductController::class, 'detailProducts'])->name('detailProduct');

@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="text-center mb-4 text-danger" style="margin-top:100px ">Login</h1>
-    <div class="container d-flex justify-content-center align-items-center pb-5">
+    <div class="container d-flex justify-content-center align-items-center pb-5 h-75">
 
         <form method="POST" action="{{ route('auth.login') }}" class="shadow-5-strong p-5 border border-0 rounded-5">
             @if (session('message'))

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\Product_Image;
-
+use App\Models\CartDetails;
 
 class Products extends Model
 {
@@ -29,7 +29,12 @@ class Products extends Model
     public function images(){
         return $this->hasMany(Product_Image::class, 'product_id', 'id');
     }
+
     public function brand(){
         return $this->belongsTo(Brands::class);
+    }
+
+    public function cart_details(){
+        return $this->hasMany(CartDetails::class, 'product_id', 'id');
     }
 }

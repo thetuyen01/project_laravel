@@ -54,6 +54,15 @@
                     <h3 class="text-primary">{{ $product->name }}</h3>
                     <p>Thương hiệu : <strong>{{ $product->brand->name }}</strong></p>
                     <h3>{{ $product->price }}₫</h3>
+                    <form action="{{ route('addCartDetail') }}" method="POST" class="mt-4">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="">Số lượng: </label>
+                            <input type="number" name="quantity" value="1">
+                        </div>
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <button type="submit" class="btn btn-primary">Mua hàng</button>
+                    </form>
                 </div>
             @endif
         </div>

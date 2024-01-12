@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
@@ -34,9 +35,17 @@
 
     .form-serch .search-ajax-result {
         position: absolute;
-        background-color: aliceblue;
+        background-color: rgb(225, 225, 225);
         padding: 10px;
-        width: 250px;
+        width: 350px;
+        border-radius: 5px;
+
+    }
+
+    .form-serch .search-ajax-result img {
+        height: 50px;
+        width: 50px;
+        margin-right: 3px
     }
 
     .form-serch .media {
