@@ -16,8 +16,6 @@ class HomeController extends Controller
         }])->get();
         $products = Products::with('images', 'brand', 'category')->take(8)->get()->toArray();
         $productsChunks = array_chunk($products, 2);
-        // dd($categories);
-        // // dd($productsChunks);
         return view('client.home', ['categorys'=>$category_menu, 'products'=>$productsChunks, 'categoryDM'=>$categories]);
     }
 }

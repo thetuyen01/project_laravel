@@ -2,52 +2,70 @@
 
 @section('content')
     <div class="container" style="margin-top: 100px">
-        <form style="width: 22rem;" action="{{ route('admin.addProduct') }}" method="POST" enctype="multipart/form-data">
+        <form style="width: 22rem;" action="{{ route('admin.updateProduct', ['id' => $product->id]) }}" method="POST"
+            enctype="multipart/form-data">
             <h1>Thêm Sản phẩm</h1>
             @csrf
+            @method('PUT')
             <!-- category name input -->
             <label class="form-label" for="form5Example1">Chọn danh mục sản phẩm</label>
             <select class="form-select mb-4" name="category_id" aria-label="Default select example">
                 @foreach ($categorys as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @if ($item->id == $product->category->id)
+                        <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                    @else
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endif
                 @endforeach
             </select>
             <label class="form-label" for="form5Example1">Chọn nhà sản xuất</label>
             <select class="form-select mb-4" name="brand_id" aria-label="Default select example">
                 @foreach ($brands as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @if ($item->id == $product->brand->id)
+                        <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                    @else
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endif
                 @endforeach
             </select>
             <!-- category name input -->
             <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" name="name" id="form5Example1" class="form-control" />
+                <input type="text" name="name" value="{{ $product->name }}" id="form5Example1" class="form-control" />
                 <label class="form-label" for="form5Example1">Tên sản phẩm</label>
             </div>
             <!-- category name input -->
             <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" name="price" id="form5Example1" class="form-control" />
+                <input type="text" name="price" value="{{ $product->price }}" id="form5Example1"
+                    class="form-control" />
                 <label class="form-label" for="form5Example1">Giá sản phẩm</label>
             </div>
             <!-- category name input -->
             <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" name="discount" id="form5Example1" class="form-control" />
+                <input type="text" name="discount" value="{{ $product->discount }}" id="form5Example1"
+                    class="form-control" />
                 <label class="form-label" for="form5Example1">Giá khuyến mãi</label>
             </div>
             <!-- category name input -->
             <div data-mdb-input-init class="form-outline mb-4">
-                <textarea type="text" name="description" id="form5Example1" class="form-control"></textarea>
+                <textarea type="text" name="description" id="form5Example1" class="form-control">{{ $product->description }}</textarea>
                 <label class="form-label" for="form5Example1">Mô tả</label>
+            </div>
+            <div class="mb-4">
+                @foreach ($product->images as $item)
+                    <img height="100px" width="100px" src="{{ asset('storage/images/' . $item->path) }}" alt="">
+                @endforeach
             </div>
             {{-- danh sách ảnh sản phẩm --}}
             <div data-mdb-input-init class=" mb-4">
                 <label class="form-label" for="customFile">Chọn ảnh menu</label>
                 <input type="file" name="images[]" multiple="multiple" class="form-control" id="customFile" />
             </div>
+            <ul id="imageListContainer"></ul>
             <!-- Submit button -->
             <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Subscribe</button>
         </form>
     </div>
-    <ul id="imageListContainer"></ul>
+
     <script>
         $(document).ready(function() {
             // Xử lý sự kiện chọn file

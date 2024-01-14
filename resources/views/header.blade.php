@@ -168,9 +168,6 @@
     $('.search-ajax-result').hide();
     $('.input-search-ajax').keyup(function() {
         var _text = $(this).val();
-        setTimeout(function() {
-            console.log('After 1 second delay');
-        }, 400);
         $.ajax({
             url: '{{ route('search_product') }}?key=' + _text,
             type: "GET",
@@ -238,9 +235,6 @@
     }
 
     function updateInputValue(product_id, quantity) {
-        setTimeout(function() {
-            console.log('After 1 second delay');
-        }, 400);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
