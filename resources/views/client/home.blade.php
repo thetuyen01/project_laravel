@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    BestMilk
+@endsection
 @section('content')
     <!-- slide -->
     <div class="container mb-5 " style="margin-top: 66.5px;">
@@ -39,56 +41,6 @@
     <div class="container mb-5">
         <div id="carousel1" class="carousel  blog slide" data-mdb-ride="carousel" data-mdb-carousel-init>
             <div class="carousel-inner">
-                {{-- <div class="carousel-item active">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-md-3">
-                            <div class="card  mb-5">
-                                <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
-                                        class="img-fluid" />
-                                    <a href="#!">
-                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <a href="#!" class="fs-4">Sữa vinamilk</a>
-                                    <a href="">
-                                        <h5 class="card-title text-decoration-line-through text-dark"
-                                            style="font-size:small">50.000<span class="text-decoration-underline">đ</span>
-                                        </h5>
-                                    </a>
-                                    <a href="">
-                                        <h5 class="card-title text-danger">45.000<span
-                                                class="text-decoration-underline">đ</span></h5>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card  mb-5">
-                                <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
-                                        class="img-fluid" />
-                                    <a href="#!">
-                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <a href="#!" class="fs-4">Sữa vinamilk</a>
-                                    <a href="">
-                                        <h5 class="card-title text-decoration-line-through text-dark"
-                                            style="font-size:small">50.000<span class="text-decoration-underline">đ</span>
-                                        </h5>
-                                    </a>
-                                    <a href="">
-                                        <h5 class="card-title text-danger">45.000<span
-                                                class="text-decoration-underline">đ</span></h5>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
                 @foreach ($products as $index => $product)
                     @if ($index == 0)
                         <div class="carousel-item  active">

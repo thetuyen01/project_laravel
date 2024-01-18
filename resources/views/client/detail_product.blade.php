@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Detail Product
+@endsection
 @section('content')
     <div class="container" style="margin-top:150px ">
         <div class="row">
@@ -61,7 +63,7 @@
                             <input type="number" name="quantity" value="1">
                         </div>
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <button type="submit" class="btn btn-primary">Mua hàng</button>
+                        <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
                     </form>
                 </div>
             @endif

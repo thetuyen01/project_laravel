@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,6 +30,12 @@ class LoginController extends Controller
             if (auth()->user()->is_admin == 1){
                 return redirect()->route('admin.home')->with('success', 'Login admin success');
             }else{
+                if(!auth()->user()->active){
+                    $email  = auth()->user()->email;
+                    Auth::logout($request);
+                    session()->flash('success', 'Please check mail to activate your account');
+                    return view('auth.active_account', ['email' => $email]);
+                }
                 return redirect()->route('home')->with('success', 'Login user success');
             }
         }else{
@@ -36,4 +43,5 @@ class LoginController extends Controller
                 ->with('message','Email-Address And Password Are Wrong.');
         }   
     }
+
 }

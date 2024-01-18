@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\Product_Image;
 use App\Models\CartDetails;
+use App\Models\InvoiceDetail;
 
 class Products extends Model
 {
@@ -36,5 +37,9 @@ class Products extends Model
 
     public function cart_details(){
         return $this->hasMany(CartDetails::class, 'product_id', 'id');
+    }
+
+    public function invoice_details(){
+        return $this->hasMany(InvoiceDetail::class, 'product_id', 'id');
     }
 }

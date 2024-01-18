@@ -49,7 +49,7 @@ class ProductController extends Controller
                     'path'=>$path
                 ]);
             }
-            return redirect()->route('showFormProduct')->with('success', 'edit category thành công');
+            return redirect()->route('admin.product.list')->with('success', 'edit category thành công');
         }else{
             return redirect()->back();
         }
@@ -104,7 +104,7 @@ class ProductController extends Controller
                             'path'=>$path
                         ]);
                     }
-                    return redirect()->route('showFormProduct')->with('success', 'edit category thành công');
+                    return redirect()->route('admin.product.list')->with('success', 'edit category thành công');
                     echo "oko";
                 }
                 $product->update([
@@ -116,11 +116,11 @@ class ProductController extends Controller
                     'discount' => $request->discount,
                     'description' => $request->description,
                 ]);
-                return redirect()->route('showFormProduct')->with('success', 'edit category thành công');
+                return redirect()->route('admin.product.list')->with('success', 'edit category thành công');
             }
             
             
-            return redirect()->route('showFormProduct')->with('message', 'update category thất bại');
+            return redirect()->route('admin.product.list')->with('message', 'update category thất bại');
         }else{
             return redirect()->back();
         }
@@ -139,6 +139,6 @@ class ProductController extends Controller
             }
             $product->delete();
         }
-        return redirect()->route('showFormProduct')->with('success', 'delete product thành công');
+        return redirect()->route('admin.product.list')->with('success', 'delete product thành công');
     }
 }

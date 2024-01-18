@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Collection Product
+@endsection
 @section('content')
     <div style="margin-top: 30px">
         <!-- link -->

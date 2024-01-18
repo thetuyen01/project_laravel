@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container" style="margin-top: 100px">
-        <form style="width: 22rem;" action="{{ route('admin.updateProduct', ['id' => $product->id]) }}" method="POST"
+        <form style="width: 22rem;" action="{{ route('admin.product.update', ['id' => $product->id]) }}" method="POST"
             enctype="multipart/form-data">
             <h1>Thêm Sản phẩm</h1>
             @csrf

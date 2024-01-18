@@ -4,7 +4,7 @@
     <div class="container" style="margin-top: 100px">
         <div class="row">
             <div class="col-4">
-                <form style="width: 22rem;" action="{{ route('admin.addcategory') }}" method="POST"
+                <form style="width: 22rem;" action="{{ route('admin.category.add') }}" method="POST"
                     enctype="multipart/form-data">
                     <h1>Thêm Danh mục menu</h1>
                     @csrf
@@ -44,11 +44,11 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-3">
-                                            <a href="{{ route('formeditcategory', ['id' => $item->id]) }}"
+                                            <a href="{{ route('admin.category.formeditcategory', ['id' => $item->id]) }}"
                                                 class="btn btn-primary">Edit</a>
                                         </div>
                                         <div class="col-3">
-                                            <form action="{{ route('admin.deleteCategory', ['id' => $item->id]) }}"
+                                            <form action="{{ route('admin.category.delete', ['id' => $item->id]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')

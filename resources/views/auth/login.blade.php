@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Login
+@endsection
 @section('content')
     <h1 class="text-center mb-4 text-danger" style="margin-top:100px ">Login</h1>
     <div class="container d-flex justify-content-center align-items-center pb-5 h-75">

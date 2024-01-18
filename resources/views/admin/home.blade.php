@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.admin')
 @section('content')
     <div class="container mt-5">
         xin chào <h1>{{ Auth::user()->name }}</h1>

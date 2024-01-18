@@ -65,9 +65,32 @@
 
                     </li>
                 </ul>
-            @endif
+                <!-- Avatar -->
+                <div class="dropdown ms-2">
+                    <a data-mdb-dropdown-init class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                        href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('profile') }}">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('getOrders') }}">Đơn hàng của bạn</a>
+                        </li>
+                        <li>
+                            <form action="{{ route('auth.logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">Đăng Xuất</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
         </div>
-        <!-- Collapsible wrapper -->
+        @endif
+    </div>
+    <!-- Collapsible wrapper -->
 
 
 
@@ -95,7 +118,6 @@
                                     <div class="p-5">
                                         <div class="d-flex justify-content-between align-items-center mb-5">
                                             <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                                            <h6 class="mb-0 text-muted">3 items</h6>
                                         </div>
                                         <div class="overflow-y-scroll"style="max-height: 400px;" id="listcar">
                                             <hr class="my-4">
@@ -114,8 +136,9 @@
                                                         <i class="fas fa-minus"></i>
                                                     </button>
 
-                                                    <input id="form1" min="0" name="quantity" value="1"
-                                                        type="number" class="form-control form-control-sm" />
+                                                    <input id="form1" min="0" name="quantity"
+                                                        value="1" type="number"
+                                                        class="form-control form-control-sm" />
 
                                                     <button class="btn btn-link px-2"
                                                         onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -143,8 +166,9 @@
                                             <h5 id="total">€ 137.00</h5>
                                         </div>
 
-                                        <button type="button" class="btn btn-dark btn-block btn-lg"
-                                            data-mdb-ripple-color="dark">Register</button>
+                                        <a type="button" href="{{ route('getCheckout') }}"
+                                            class="btn btn-dark btn-block btn-lg"
+                                            data-mdb-ripple-color="dark">Checkout</a>
 
                                     </div>
                                 </div>
@@ -273,7 +297,7 @@
                     var total = 0;
                     console.log(response.data)
                     for (var pro of response.data) {
-                        total += pro.product.price * pro.quantity
+                        total += pro.product.discount * pro.quantity
                         html += `
                                     <hr class="my-4">
                                         <div class="row mb-4 d-flex justify-content-between align-items-center">
@@ -291,7 +315,7 @@
                                                 </button>
 
                                                 <input id="quantity${pro.product.id}" min="0" name="quantity" value="${pro.quantity}"
-                                                    type="number" class="form-control form-control-sm" />
+                                                    type="text" class="w-100" />
 
                                                 <button class="btn btn-link px-2"
                                                     onclick="updateTotalAmount('cong','quantity${pro.product.id}','gia${pro.product.id}',${pro.product.id})">
@@ -299,7 +323,9 @@
                                                 </button>
                                             </div>
                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                <h6 class="mb-0" id="gia${pro.product.id}">${pro.product.price}</h6>
+                                                <p class="text-decoration-line-through"><span
+                                                    class="text-decoration-line-through">${pro.product.price}đ</span></p>
+                                                <h6 class="mb-0" id="gia${pro.product.id}">${pro.product.discount}</h6>
                                             </div>
                                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                 <a onclick="deleteCartItem(${pro.product.id})" class="text-muted"><i
@@ -335,7 +361,16 @@
             },
             success(response) {
                 console.log(response)
+                toastr.options = {
+                    "progressBar": true,
+                    "closeButton": true,
+                    "positionClass": "toast-top-right custom-toast",
+                }
+                toastr.success("delete product success", {
+                    timeOut: 120000
+                })
                 render()
+
             }
         });
     }

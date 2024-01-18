@@ -22,6 +22,10 @@ return new class extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->decimal('total_amount',10,3);
+            $table->string('address');
+            $table->string('phone_number');
+            $table->string('notes');
+            $table->integer('condition');
             $table->timestamps();
         });
     }

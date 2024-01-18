@@ -30,11 +30,11 @@ class ForGetPasswordController extends Controller
             $isEmail->reset_code = $soNgauNhien;
             $isEmail->save();
             Session::put('user_id', $isEmail->id);
-            // Mail::send('mail.forgetpw', ['reset_code' => $soNgauNhien, 'name'=>$isEmail->name], function ($message) use ($isEmail) {
-            //     $message->subject('TheGoiSua - xác nhận tài khoản');
-            //     $message->to($isEmail->email);
-            //     // Các cài đặt khác của thư
-            // });
+            Mail::send('mail.forgetpw', ['reset_code' => $soNgauNhien, 'name'=>$isEmail->name], function ($message) use ($isEmail) {
+                $message->subject('TheGoiSua - reset password');
+                $message->to($isEmail->email);
+                // Các cài đặt khác của thư
+            });
             return view('auth.password.code', ['email'=>$isEmail->email]);
        }else{
             return redirect()->back();  
@@ -56,7 +56,6 @@ class ForGetPasswordController extends Controller
         $input = $request->all();
         $user = User::where('email', $input['email'])->first();
         if ($user && $user->reset_code == $input['code']) {
-            // Mã xác thực hợp lệ
             Session::put('user_id', $user->id);
             return view('auth.password.changepw');
         } else {

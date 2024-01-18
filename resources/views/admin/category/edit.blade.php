@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container" style="margin-top: 100px">
-        <form style="width: 22rem;" action="{{ route('admin.updateCategory', ['id' => $category->id]) }}" method="POST"
+        <form style="width: 22rem;" action="{{ route('admin.category.update', ['id' => $category->id]) }}" method="POST"
             enctype="multipart/form-data">
             <h1>Edit Danh mục menu</h1>
             @csrf

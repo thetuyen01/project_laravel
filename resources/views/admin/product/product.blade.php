@@ -4,7 +4,7 @@
     <div class="container" style="margin-top: 100px">
         <div class="row">
             <div class="col-4">
-                <form style="width: 22rem;" action="{{ route('admin.addProduct') }}" method="POST"
+                <form style="width: 22rem;" action="{{ route('admin.product.add') }}" method="POST"
                     enctype="multipart/form-data">
                     <h1>Thêm Sản phẩm</h1>
                     @csrf
@@ -84,11 +84,11 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-3 col-sm-12 col-md-12 mb-2">
-                                            <a href="{{ route('showFormEditProduct', ['id' => $item->id]) }}"
+                                            <a href="{{ route('admin.product.edit', ['id' => $item->id]) }}"
                                                 class="btn btn-primary">Edit</a>
                                         </div>
                                         <div class="col-3 col-sm-12 col-md-12">
-                                            <form action="{{ route('admin.deleteProduct', ['id' => $item->id]) }}"
+                                            <form action="{{ route('admin.product.delete', ['id' => $item->id]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')

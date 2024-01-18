@@ -20,6 +20,6 @@ class IsAdmin
             return $next($request);
         }
         
-        return redirect('home')->with('erro','bạn không có quyền truy cập trang này');
+        return redirect()->route('home')->with('message','bạn không có quyền truy cập trang này');
     }
 }

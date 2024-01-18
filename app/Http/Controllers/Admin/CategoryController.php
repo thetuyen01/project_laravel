@@ -27,9 +27,9 @@ class CategoryController extends Controller
                 'path'=>$path,
                 'slug'=>$slug
             ]);
-            return redirect()->route('formCategory')->with('success', 'create category thành công');
+            return redirect()->route('admin.category.formCategory')->with('success', 'create category thành công');
         }else{
-            return redirect()->route('formCategory');
+            return redirect()->route('admin.category.formCategory');
         }
     }
 
@@ -62,13 +62,13 @@ class CategoryController extends Controller
                     return redirect()->back()->with('message', 'Lỗi không tìm thấy file');
                 }
 
-                return redirect()->route('formCategory')->with('success', 'edit category thành công');
+                return redirect()->route('admin.category.formCategory')->with('success', 'edit category thành công');
             }
             
             $category->name = $name;
             $category->slug = $slug;
             $category->save();
-            return redirect()->route('formCategory')->with('success', 'edit category thành công');
+            return redirect()->route('admin.category.formCategory')->with('success', 'edit category thành công');
             
         }else{
             return redirect()->back()->with('message', 'ten và hình ảnh không được để trống');
@@ -83,6 +83,6 @@ class CategoryController extends Controller
             $category->delete();
             Storage::delete($fileToDelete);
         }
-        return redirect()->route('formCategory')->with('success', 'delete category thành công');
+        return redirect()->route('admin.category.formCategory')->with('success', 'delete category thành công');
     }
 }

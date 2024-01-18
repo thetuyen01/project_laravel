@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BlogImageController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\ForGetPasswordController;
@@ -17,9 +18,11 @@ use App\Http\Controllers\Clients\ProductController;
 use App\Http\Controllers\Clients\ProfileUserController;
 use App\Http\Controllers\Clients\CartController;
 use App\Http\Controllers\Clients\CheckoutController;
+use App\Http\Controllers\Clients\OrderController;
 use App\Mail\ForGetPassword;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +47,8 @@ Route::prefix('auth')->group(function(){
     Route::get('/signup', [RegisterController::class, 'showFormSignup'])->name('formsignup');
     // Route xử lý tạo tài khoản
     Route::post('/signup', [RegisterController::class, 'signup'])->name('auth.signup');
+    // Route active account
+    Route::post('/active', [RegisterController::class, 'checkActive'])->name('auth.active');
     // Route lấy ra form điền email để lấy lại mật khẩu
     Route::get('/identify', [ForGetPasswordController::class, 'showFormForGet'])->name('formForget');
     // Route lấy ra form điền email để lấy lại mật khẩu
@@ -67,25 +72,40 @@ Route::get('mail', function(){
     Mail::to('thetuyen16@gmail.com')-> send(new ForGetPassword);
 });
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware('is_admin','auth')->group(function(){
     // Route Category get
-    Route::get('/category', [CategoryController::class, 'ShowFormCategory'])->name('formCategory');
-    Route::post('/category', [CategoryController::class, 'addCategory'])->name('admin.addcategory');
-    Route::get('/category/edit/{id}', [CategoryController::class, 'showFormEditCategory'])->name('formeditcategory');
-    Route::put('/category/edit/{id}', [CategoryController::class, 'updateCategory'])->name('admin.updateCategory');
-    Route::delete('/category/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.deleteCategory');
+    Route::prefix('category')->group(function(){
+        Route::get('', [CategoryController::class, 'ShowFormCategory'])->name('admin.category.formCategory');
+        Route::post('add', [CategoryController::class, 'addCategory'])->name('admin.category.add');
+        Route::get('edit/{id}', [CategoryController::class, 'showFormEditCategory'])->name('admin.category.formeditcategory');
+        Route::put('edit/{id}', [CategoryController::class, 'updateCategory'])->name('admin.category.update');
+        Route::delete('delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
+    });
+    
     // Route Product get 
-    Route::get('/product', [AdminProductController::class, 'showFormProduct'])->name('showFormProduct');
-    Route::post('/product', [AdminProductController::class, 'addProduct'])->name('admin.addProduct');
-    Route::get('/product/edit/{id}', [AdminProductController::class, 'showFormEditProduct'])->name('showFormEditProduct');
-    Route::put('/product/edit/{id}', [AdminProductController::class, 'updateProduct'])->name('admin.updateProduct');
-    Route::delete('/product/edit/{id}', [AdminProductController::class, 'deleteProduct'])->name('admin.deleteProduct');
+    Route::prefix('product')->group(function(){
+        Route::get('', [AdminProductController::class, 'showFormProduct'])->name('admin.product.list');
+        Route::post('/add', [AdminProductController::class, 'addProduct'])->name('admin.product.add');
+        Route::get('edit/{id}', [AdminProductController::class, 'showFormEditProduct'])->name('admin.product.edit');
+        Route::put('edit/{id}', [AdminProductController::class, 'updateProduct'])->name('admin.product.update');
+        Route::delete('edit/{id}', [AdminProductController::class, 'deleteProduct'])->name('admin.product.delete');
+    });
+    
     // Route Brand
-    Route::get('/brand', [BrandController::class, 'showFormBrand'])->name('formBrand');
-    Route::post('/brand', [BrandController::class, 'addBrand'])->name('admin.addBrand');
-    Route::get('/brand/{id}', [BrandController::class, 'showFormedit'])->name('showFormedit');
-    Route::put('/brand/edit/{id}', [BrandController::class, 'updateBrand'])->name('admin.updateBrand');
-    Route::delete('/brand/delete/{id}', [BrandController::class, 'deleteBrand'])->name('admin.deleteBrand');
+    Route::prefix('brand')->group(function(){
+        Route::get('', [BrandController::class, 'showFormBrand'])->name('formBrand');
+        Route::post('add', [BrandController::class, 'addBrand'])->name('admin.addBrand');
+        Route::get('edit/{id}', [BrandController::class, 'showFormedit'])->name('showFormedit');
+        Route::put('edit/{id}', [BrandController::class, 'updateBrand'])->name('admin.updateBrand');
+        Route::delete('delete/{id}', [BrandController::class, 'deleteBrand'])->name('admin.deleteBrand');                
+    });
+
+    // invoice
+    Route::prefix('invoice')->group(function(){
+        Route::get('', [OrdersController::class, 'getListOrder'])->name('admin.invoice.getListOrder');
+        Route::put('edit/{id}', [OrdersController::class, 'editInvoice'])->name('admin.invoice.editInvoice');
+    });
+    
     // blog Image addblogImage
     Route::get('/image', [BlogImageController::class], 'ShowFormBlogImage')->name('showformbogimage');
     Route::post('/image', [BlogImageController::class], 'addImageBlog')->name('addblogImage');
@@ -110,6 +130,9 @@ Route::get('/chat', [ChatMessageController::class, 'showFormMessage'])->name('sh
 Route::post('/chat', [ChatMessageController::class, 'sendMessage'])->name('sendMessage');
 // checkout
 Route::get('/checkout', [CheckoutController::class, 'getCheckout'])->name('getCheckout');
+Route::post('/checkout', [CheckoutController::class, 'addInvoice'])->name('addInvoice');
+// orders
+Route::get('/order', [OrderController::class, 'getOrders'])->name('getOrders');
 
 
 Route::get('/{slug}', [ProductController::class, 'showAllProductsInCategory'])->name('showAllProductsInCategory');
