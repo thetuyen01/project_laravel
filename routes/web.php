@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\BlogImageController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\ForGetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -73,6 +75,15 @@ Route::get('mail', function(){
 });
 
 Route::prefix('admin')->middleware('is_admin','auth')->group(function(){
+    Route::get('home', [AdminHomeController::class, 'menu'])->name('admin.home');
+    // Route User 
+    Route::prefix('user')->group(function(){
+        Route::get('', [UserAdminController::class, 'get_list_users'])->name('admin.list_user');
+        Route::post('add', [UserAdminController::class, 'add_user'])->name('admin.add_user');
+        Route::get('edit/{id}', [UserAdminController::class, 'show_edit'])->name('admin.edit_user');
+        Route::put('edit/{id}', [UserAdminController::class, 'update'])->name('admin.update_user');
+        Route::delete('delete/{id}', [UserAdminController::class, 'delete'])->name('admin.delete_user');
+    });
     // Route Category get
     Route::prefix('category')->group(function(){
         Route::get('', [CategoryController::class, 'ShowFormCategory'])->name('admin.category.formCategory');
@@ -107,12 +118,18 @@ Route::prefix('admin')->middleware('is_admin','auth')->group(function(){
     });
     
     // blog Image addblogImage
-    Route::get('/image', [BlogImageController::class], 'ShowFormBlogImage')->name('showformbogimage');
-    Route::post('/image', [BlogImageController::class], 'addImageBlog')->name('addblogImage');
+    Route::prefix('image')->group(function(){
+        Route::get('', [BlogImageController::class, 'showFormadd'])->name('showformbogimage');
+        Route::post('add', [BlogImageController::class, 'addImageBlog'])->name('admin.add.blogImage');
+        Route::get('edit/{id}', [BlogImageController::class, 'show_form_edit'])->name('admin.edit.blogImage');
+        Route::put('edit/{id}', [BlogImageController::class, 'update'])->name('admin.edit.updateimage');
+        Route::delete('delete/{id}', [BlogImageController::class, 'delete'])->name('admin.edit.deleteimage');
+    });
+    
 });
-Route::get('/admin/home', function () {
-    return view('admin.home');
-})->name('admin.home');
+
+
+
 
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -121,10 +138,12 @@ Route::get('/profile', [ProfileUserController::class, 'ShowProfile'])->name('pro
 Route::put('/profile', [ProfileUserController::class, 'UpdateProfileUser'])->name('updateProdile');
 
 //cart
-Route::get('/cart', [CartController::class, 'getCart'])->name('getCart')->middleware('auth');
-Route::post('/updatequantity', [CartDetailController::class, 'updateQuantity'])->name('updateQuantity')->middleware('auth');
-Route::post('/deletecartdetai', [CartDetailController::class, 'deleteProdcutCart'])->name('deleteProdcutCart')->middleware('auth');
-Route::post('/addCartDetail', [CartDetailController::class, 'addCartDetail'])->name('addCartDetail');
+Route::prefix('cart')->middleware('auth')->group(function(){
+    Route::get('', [CartController::class, 'getCart'])->name('getCart');
+    Route::post('/updatequantity', [CartDetailController::class, 'updateQuantity'])->name('updateQuantity')->middleware('auth');
+    Route::post('/deletecartdetai', [CartDetailController::class, 'deleteProdcutCart'])->name('deleteProdcutCart')->middleware('auth');
+    Route::post('/addCartDetail', [CartDetailController::class, 'addCartDetail'])->name('addCartDetail')->middleware('auth');
+});
 // chat
 Route::get('/chat', [ChatMessageController::class, 'showFormMessage'])->name('showFormMessage');
 Route::post('/chat', [ChatMessageController::class, 'sendMessage'])->name('sendMessage');

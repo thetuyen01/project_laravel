@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('admin.layouts.admin')
 
 @section('content')
-    <div class="container" style="margin-top: 100px">
+    <div class="container mt-5" style="min-height: 100vh;">
         <form style="width: 22rem;" action="{{ route('admin.category.update', ['id' => $category->id]) }}" method="POST"
             enctype="multipart/form-data">
             <h1>Edit Danh mục menu</h1>

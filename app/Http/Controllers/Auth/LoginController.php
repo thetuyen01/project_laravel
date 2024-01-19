@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -36,7 +37,8 @@ class LoginController extends Controller
                     session()->flash('success', 'Please check mail to activate your account');
                     return view('auth.active_account', ['email' => $email]);
                 }
-                return redirect()->route('home')->with('success', 'Login user success');
+                $intendedUrl = Session::pull('url.intended', '/');
+                return redirect()->to($intendedUrl)->with('success', 'Login user success');
             }
         }else{
             return redirect()->back()

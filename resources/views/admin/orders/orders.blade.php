@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('admin.layouts.admin')
 
 @section('content')
-    <div class="container-fluid" style="margin-top: 100px">
+    <div class="container-fluid mt-5" style="min-height: 100vh;">
         <div class="row">
             <div class="col-3">
                 <form style="width: 22rem;" action="{{ route('admin.category.add') }}" method="POST"

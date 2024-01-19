@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('admin.layouts.admin')
 
 @section('content')
-    <div class="container h-75" style="margin-top: 100px">
+    <div class="container mt-5" style="min-height: 100vh;">
         <form style="width: 22rem;" action="{{ route('admin.updateBrand', ['id' => $brand->id]) }}" method="POST">
             <h1>Edit nhà sản xuất</h1>
             @csrf

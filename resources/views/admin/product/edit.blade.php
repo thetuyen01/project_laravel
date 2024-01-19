@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('admin.layouts.admin')
 
 @section('content')
-    <div class="container" style="margin-top: 100px">
+    <div class="container mt-5" style="min-height: 100vh;">
         <form style="width: 22rem;" action="{{ route('admin.product.update', ['id' => $product->id]) }}" method="POST"
             enctype="multipart/form-data">
-            <h1>Thêm Sản phẩm</h1>
+            <h1>Edit Sản phẩm</h1>
             @csrf
             @method('PUT')
             <!-- category name input -->

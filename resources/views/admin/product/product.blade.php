@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('admin.layouts.admin')
 
 @section('content')
-    <div class="container" style="margin-top: 100px">
+    <div class="container-fluid mt-5" style="min-height: 100vh;">
         <div class="row">
-            <div class="col-4">
+            <div class="col-3">
                 <form style="width: 22rem;" action="{{ route('admin.product.add') }}" method="POST"
                     enctype="multipart/form-data">
                     <h1>Thêm Sản phẩm</h1>
@@ -52,7 +52,7 @@
                 </form>
 
             </div>
-            <div class="col-8">
+            <div class="col-9">
                 <table class="table table-bordered ">
                     <thead>
                         <tr>
