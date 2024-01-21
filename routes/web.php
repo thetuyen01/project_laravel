@@ -115,6 +115,7 @@ Route::prefix('admin')->middleware('is_admin','auth')->group(function(){
     Route::prefix('invoice')->group(function(){
         Route::get('', [OrdersController::class, 'getListOrder'])->name('admin.invoice.getListOrder');
         Route::put('edit/{id}', [OrdersController::class, 'editInvoice'])->name('admin.invoice.editInvoice');
+        Route::get('detail/{id}', [OrdersController::class, 'detail_invoice'])->name('admin.invoice.detailincoice');
     });
     
     // blog Image addblogImage
@@ -128,31 +129,33 @@ Route::prefix('admin')->middleware('is_admin','auth')->group(function(){
     
 });
 
-
-
-
-
-Route::get('/', [HomeController::class, 'home'])->name('home');
 // profile
-Route::get('/profile', [ProfileUserController::class, 'ShowProfile'])->name('profile');
-Route::put('/profile', [ProfileUserController::class, 'UpdateProfileUser'])->name('updateProdile');
+Route::prefix('profile')->middleware('auth')->group(function(){
+    Route::get('', [ProfileUserController::class, 'ShowProfile'])->name('profile');
+    Route::put('edit', [ProfileUserController::class, 'UpdateProfileUser'])->name('updateProdile');
+});
+
 
 //cart
 Route::prefix('cart')->middleware('auth')->group(function(){
     Route::get('', [CartController::class, 'getCart'])->name('getCart');
-    Route::post('/updatequantity', [CartDetailController::class, 'updateQuantity'])->name('updateQuantity')->middleware('auth');
-    Route::post('/deletecartdetai', [CartDetailController::class, 'deleteProdcutCart'])->name('deleteProdcutCart')->middleware('auth');
-    Route::post('/addCartDetail', [CartDetailController::class, 'addCartDetail'])->name('addCartDetail')->middleware('auth');
+    Route::post('/updatequantity', [CartDetailController::class, 'updateQuantity'])->name('updateQuantity');
+    Route::post('/deletecartdetai', [CartDetailController::class, 'deleteProdcutCart'])->name('deleteProdcutCart');
+    Route::post('/addCartDetail', [CartDetailController::class, 'addCartDetail'])->name('addCartDetail');
 });
-// chat
-Route::get('/chat', [ChatMessageController::class, 'showFormMessage'])->name('showFormMessage');
-Route::post('/chat', [ChatMessageController::class, 'sendMessage'])->name('sendMessage');
+
 // checkout
-Route::get('/checkout', [CheckoutController::class, 'getCheckout'])->name('getCheckout');
-Route::post('/checkout', [CheckoutController::class, 'addInvoice'])->name('addInvoice');
+Route::prefix('checkout')->middleware('auth')->group(function(){
+    Route::get('', [CheckoutController::class, 'getCheckout'])->name('getCheckout');
+    Route::post('add', [CheckoutController::class, 'addInvoice'])->name('addInvoice');
+});
+
 // orders
 Route::get('/order', [OrderController::class, 'getOrders'])->name('getOrders');
 
-
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('news', function(){
+    return view('client.new');
+})->name('news');
 Route::get('/{slug}', [ProductController::class, 'showAllProductsInCategory'])->name('showAllProductsInCategory');
 Route::get('/{slug_category}/{slug_product}', [ProductController::class, 'detailProducts'])->name('detailProduct');

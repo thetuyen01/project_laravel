@@ -30,16 +30,10 @@
             <!-- Left links -->
             <ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
                 <li class="nav-item">
-                    <a class="nav-link  fs-5 fw-bold active" href="/">Home</a>
+                    <a class="nav-link  fs-5 fw-bold " href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-5 fw-bold a1" href="#">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5 fw-bold a1" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5 fw-bold a1" href="#">News</a>
+                    <a class="nav-link fs-5 fw-bold a1 " href="{{ route('news') }}">News</a>
                 </li>
             </ul>
             <!-- Left links -->

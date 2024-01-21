@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
+use App\Models\InvoiceDetail;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -19,5 +20,14 @@ class OrdersController extends Controller
         $invoice->condition = (int)$request->condition;
         $invoice->save();
         return redirect()->back()->with('success', 'update success');
+    }
+
+    public function detail_invoice($id){
+        $detail_invoices = InvoiceDetail::with('product.images')->where('invoice_id', $id)->get();
+        if (!$detail_invoices->isEmpty()) {
+            return view('admin.orders.detail_order', ['detail_invoices' => $detail_invoices]);
+        }
+
+        return redirect()->back()->with('message', 'Detail invoice not exit');
     }
 }

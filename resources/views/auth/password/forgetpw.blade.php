@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
         <form action="{{ route('auth.sentoemail') }}" method="POST">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    Vui lòng kiểm tra dử liệu !!!
+                </div>
+            @endif
             <h1 class="text-center">Enter email to check</h1>
             @csrf
             <!-- Email input -->
