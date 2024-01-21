@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Clients;
 
 use App\Http\Controllers\Controller;
+use App\Models\blog_images;
 use App\Models\Category;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class HomeController extends Controller
         }])->get();
         $products = Products::with('images', 'brand', 'category')->take(8)->get()->toArray();
         $productsChunks = array_chunk($products, 2);
-        return view('client.home', ['categorys'=>$category_menu, 'products'=>$productsChunks, 'categoryDM'=>$categories]);
+        $image_carousel = blog_images::all();
+        return view('client.home', ['categorys'=>$category_menu, 'products'=>$productsChunks, 'categoryDM'=>$categories, 'image_carousel'=>$image_carousel]);
     }
 }

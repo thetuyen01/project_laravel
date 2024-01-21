@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <form action="{{ route('auth.sentoemail') }}" method="POST">
+    <div class="container mt-5">
+        <form class="container m-5" action="{{ route('auth.sentoemail') }}" method="POST">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     Vui lòng kiểm tra dử liệu !!!
@@ -16,7 +16,7 @@
                 <label class="form-label" for="form1Example1">Email address</label>
             </div>
             <!-- Submit button -->
-            <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block">Sign in</button>
+            <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block">Post</button>
         </form>
     </div>
 @endsection

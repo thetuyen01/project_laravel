@@ -35,9 +35,10 @@ class ForGetPasswordController extends Controller
                 $message->to($isEmail->email);
                 // Các cài đặt khác của thư
             });
+            session()->flash('success', 'We have sent the code to email to you, please check the code');
             return view('auth.password.code', ['email'=>$isEmail->email]);
        }else{
-            return redirect()->back();  
+            return redirect()->back()->with('message', 'email not exit');  
        }
     }
 
@@ -57,10 +58,12 @@ class ForGetPasswordController extends Controller
         $user = User::where('email', $input['email'])->first();
         if ($user && $user->reset_code == $input['code']) {
             Session::put('user_id', $user->id);
+            session()->flash('success', 'Your code is valid, please set a new password');
             return view('auth.password.changepw');
         } else {
             // Mã xác thực không hợp lệ
-            return redirect()->back()->with('error', 'Mã xác thực không đúng.');
+            session()->flash('message', 'Mã xác thực không đúng');
+            return view('auth.password.code', ['email'=>$user->email]);
         }  
     }
     

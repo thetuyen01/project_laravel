@@ -5,16 +5,10 @@
     </div>
 @endif
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
         <form method="POST" action="{{ route('auth.changepw') }}">
+            <h1 class="mt-5">Change Password</h1>
             @csrf
-            @if (Auth::check())
-                <!-- Password cũ input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" name="passwordcu" id="form1Example2" class="form-control" />
-                    <label class="form-label" for="form1Example2">Nhập mật khẩu cũ</label>
-                </div>
-            @endif
             <!-- Password input -->
             <div data-mdb-input-init class="form-outline mb-4">
                 <input type="password" name="password" id="form1Example2" class="form-control" />
@@ -23,7 +17,7 @@
             {{-- cfpw --}}
             <div data-mdb-input-init class="form-outline mb-4">
                 <input type="password" name="passwordCF" id="form1Example2" class="form-control" />
-                <label class="form-label" for="form1Example2">Password</label>
+                <label class="form-label" for="form1Example2">ConFirmPassword</label>
             </div>
             <!-- Submit button -->
             <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block">Change PW</button>

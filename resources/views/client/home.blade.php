@@ -8,14 +8,15 @@
         <div id="carousel" class="carousel slide" data-mdb-ride="carousel" data-mdb-carousel-init>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://bizweb.dktcdn.net/100/416/540/themes/839121/assets/slide-img1.jpg?1704418142179"
-                        class="d-block w-100" alt="Wild Landscape" />
-                </div>
-                <div class="carousel-item">
                     <img src="https://bizweb.dktcdn.net/100/416/540/themes/839121/assets/slide-img4.jpg?1704418142179"
                         class="d-block w-100" alt="Camera" />
                 </div>
 
+                @foreach ($image_carousel as $item)
+                    <div class="carousel-item">
+                        <img src="{{ asset('storage/images/' . $item->path) }}" class="d-block w-100" alt="Camera" />
+                    </div>
+                @endforeach
                 <div class="carousel-item ">
                     <img src="https://bizweb.dktcdn.net/100/416/540/themes/839121/assets/slide-img6.jpg?1704418142179"
                         class="d-block w-100" alt="Exotic Fruits" />
@@ -111,51 +112,6 @@
                         </div>
                     @endif
                 @endforeach
-                <div class="carousel-item blog">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-md-3">
-                            <div class="card mb-5">
-                                <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
-                                        class="img-fluid" />
-                                    <a href="#!">
-                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <a href="#!" class="fs-4">Sữa vinamilk</a>
-                                    <a href="">
-                                        <h5 class="card-title text-dark">50.000<span
-                                                class="text-decoration-underline">đ</span></h5>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card  mb-5">
-                                <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp"
-                                        class="img-fluid" />
-                                    <a href="#!">
-                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <a href="#!" class="fs-4">Sữa vinamilk</a>
-                                    <a href="">
-                                        <h5 class="card-title text-decoration-line-through text-dark"
-                                            style="font-size:small">50.000<span class="text-decoration-underline">đ</span>
-                                        </h5>
-                                    </a>
-                                    <a href="">
-                                        <h5 class="card-title text-danger">45.000<span
-                                                class="text-decoration-underline">đ</span></h5>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <button class="carousel-control-prev" type="button" data-mdb-target="#carousel1" data-mdb-slide="prev">
                 <span class="carousel-control-prev-icon blockicon" aria-hidden="true"></span>

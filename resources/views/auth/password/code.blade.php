@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
         <form action="{{ route('auth.checkcode') }}" method="POST">
             <h1 class="text-center">Enter Code to check</h1>
             @csrf

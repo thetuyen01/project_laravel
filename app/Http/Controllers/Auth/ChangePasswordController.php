@@ -11,22 +11,11 @@ class ChangePasswordController extends Controller
     public function ChangePW(Request $request) {
         $input = $request->all();
         if (trim($input['password'])==trim($input['passwordCF'])){
-            // validate
-            $rules = [
-                'password' => 'required|min:6',
-            ];
+            if (strlen(trim($input['password'])) < 6) {
+                session()->flash('message', 'Password larger than 6 characters');
+                return view('auth.password.changepw');
+            }
 
-            $message = [
-                'required'=> 'Trường :attribute không được để trống',
-                'min'=> 'Trường :attribute không nhỏ hơn :min kí tự'
-            ];
-            
-            $validator = Validator::make($request->all(), $rules, $message);
-
-        
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();          
-        }
             $userId = session('user_id');
             $user = User::find($userId);
             $user-> password = bcrypt(trim($input['password']));

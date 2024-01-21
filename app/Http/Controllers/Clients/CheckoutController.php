@@ -16,11 +16,11 @@ class CheckoutController extends Controller
         if (Auth::check()){
             $user_id = auth()->user()->id;
             if($user_id){
-                $cart_id = Carts::where('user_id', $user_id)->first()->id;
-                if ($cart_id){
+                $cart = Carts::where('user_id', $user_id)->first();
+                if ($cart !=null){
                     $cart_details = CartDetails::with(['product'=>function($query){
                         $query->with('images')->get();
-                    }])->where('cart_id', $cart_id)->get();
+                    }])->where('cart_id', $cart->id)->get();
                     $total = 0;
                     $count = 0;
                     foreach($cart_details as $item){
@@ -29,6 +29,7 @@ class CheckoutController extends Controller
                     }
                     return view('client.checkout', ['cart_details' =>$cart_details, 'total'=>$total, 'count'=>$count]);
                 }
+                return redirect()->back()->with('message', 'Bạn cần mua hàng vì chưa có đơn hàng nào trong giỏ hàng');
             }
         }
         return redirect()->route('formlogin')->with('message', 'Please Login');
